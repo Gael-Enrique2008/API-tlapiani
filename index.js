@@ -4,16 +4,23 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 
-// Conexion segura usando variables de entorno
-mongoose.connect(process.env.MONGO_URI)
-.then(() => console.log("Conectado a MongoDB"))
-.catch(err => console.log(err));
+// Middleware
+app.use(express.json());
 
-// Esquema
+// ESQUEMA Y MODELO
 const MeasurementSchema = new mongoose.Schema({
-    device_id: String,
-    flow: Number,
-    tds: Number,
+    device_id: {
+        type: String,
+        required: true
+    },
+    flow: {
+        type: Number,
+        required: true
+    },
+    tds: {
+        type: Number,
+        required: true
+    },
     timestamp: {
         type: Date,
         default: Date.now
@@ -22,9 +29,9 @@ const MeasurementSchema = new mongoose.Schema({
 
 const Measurement = mongoose.model('Measurement', MeasurementSchema);
 
-app.use(express.json());
+// RUTAS
 
-// ruta de prueba
+// Ruta de prueba
 app.get('/', (req, res) => {
     res.send('API funcionando');
 });
@@ -32,9 +39,21 @@ app.get('/', (req, res) => {
 // Endpoint principal
 app.post('/api/data', async (req, res) => {
     try {
-        const data = req.body;
+        const { device_id, flow, tds } = req.body;
 
-        const newMeasurement = new Measurement(data);
+        // Validación básica
+        if (!device_id || flow === undefined || tds === undefined) {
+            return res.status(400).json({
+                message: "Faltan datos requeridos"
+            });
+        }
+
+        const newMeasurement = new Measurement({
+            device_id,
+            flow,
+            tds
+        });
+
         await newMeasurement.save();
 
         res.status(200).json({
@@ -42,16 +61,30 @@ app.post('/api/data', async (req, res) => {
         });
 
     } catch (error) {
-        console.error(error);
+        console.error("ERROR:", error);
+
         res.status(500).json({
-            message: "Error al guardar datos"
+            message: error.message
         });
     }
 });
 
-// Puerto dinamico
+// CONEXION A MONGODB + SERVER
+
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
-    console.log(`Servidor corriendo en puerto ${PORT}`);
+mongoose.connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+.then(() => {
+    console.log("Conectado a MongoDB");
+
+    app.listen(PORT, () => {
+        console.log(`Servidor corriendo en puerto ${PORT}`);
+    });
+
+})
+.catch(err => {
+    console.error("Error conectando a MongoDB:", err);
 });
