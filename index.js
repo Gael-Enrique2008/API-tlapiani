@@ -35,6 +35,14 @@ const Measurement = mongoose.model('Measurement', MeasurementSchema);
 app.get('/', (req, res) => {
     res.send('API funcionando');
 });
+app.get('/api/data', async (req, res) => {
+    try {
+        const data = await Measurement.find().sort({ timestamp: -1 }).limit(10);
+        res.json(data);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
 
 // Endpoint principal
 app.post('/api/data', async (req, res) => {
