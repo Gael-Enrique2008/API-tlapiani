@@ -3,8 +3,10 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const cors = require('cors'); 
 
 // Middleware
+app.use(cors());
 app.use(express.json());
 
 // ESQUEMA Y MODELO
@@ -35,26 +37,33 @@ const Measurement = mongoose.model('Measurement', MeasurementSchema);
 app.get('/', (req, res) => {
     res.send('API funcionando');
 });
+
+// GET (dashboard)
 app.get('/api/data', async (req, res) => {
     try {
-        const data = await Measurement.find().sort({ timestamp: -1 }).limit(10);
+        const data = await Measurement.find()
+            .sort({ timestamp: -1 })
+            .limit(10);
+
         res.json(data);
+
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 });
 
-// Endpoint principal
+// POST (ESP32 / celular)
 app.post('/api/data', async (req, res) => {
     try {
         const { device_id, flow, tds } = req.body;
 
-        // Validación básica
         if (!device_id || flow === undefined || tds === undefined) {
             return res.status(400).json({
                 message: "Faltan datos requeridos"
             });
         }
+
+        console.log("📥 Datos recibidos:", req.body); // debug útil
 
         const newMeasurement = new Measurement({
             device_id,
