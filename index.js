@@ -289,11 +289,11 @@ app.post('/api/login', async (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 
-mongoose.connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
+mongoose.set('strictQuery', true);
+
+mongoose.connect(process.env.MONGO_URI)
 .then(() => {
+
     console.log("Conectado a MongoDB");
 
     app.listen(PORT, () => {
