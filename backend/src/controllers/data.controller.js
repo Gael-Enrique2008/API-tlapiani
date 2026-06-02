@@ -127,8 +127,9 @@ const saveMeasurement = async (req, res) => {
                 datos.ph,
                 datos.bod,
                 datos.latitude,
-                datos.longitude
-            ]
+                datos.longitude,
+                estado
+            ]   
         );
 
         res.status(200).json({
