@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial - Tlapiani</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/dashboard.css">
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>Tlapiani</h2>
+
+    <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="mapa.html">Mapa</a></li>
+        <li><a href="historial.html">Historial</a></li>
+        <li><a href="alertas.html">Alertas</a></li>
+        <li><a href="reportes.html">Reportes PDF</a></li>
+        <li><a href="#">Cerrar sesión</a></li>
+    </ul>
+</div>
+
+<div class="main-content">
+
+    <div class="top-bar">
+        <h1>Historial de mediciones</h1>
+        <p>Registro de lecturas realizadas por el dispositivo Tlapiani</p>
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-md-3">
+            <div class="stat-card secondary-measure">
+                <div class="measure-icon secondary-icon">📋</div>
+                <h5>Total registros</h5>
+                <h4>24</h4>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="stat-card secondary-measure">
+                <div class="measure-icon secondary-icon">💧</div>
+                <h5>Estado frecuente</h5>
+                <h4>Normal</h4>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="stat-card secondary-measure">
+                <div class="measure-icon secondary-icon">⚠️</div>
+                <h5>Alertas</h5>
+                <h4>2</h4>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="stat-card secondary-measure">
+                <div class="measure-icon secondary-icon">🕒</div>
+                <h5>Última lectura</h5>
+                <h4>10:30 a.m.</h4>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row g-4 mt-3">
+
+        <div class="col-md-12">
+            <div class="info-card">
+
+                <h3>Tabla de registros</h3>
+
+                <div class="table-responsive">
+                    <table class="table tlapiani-table align-middle">
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Hora</th>
+                                <th>pH</th>
+                                <th>Turbidez</th>
+                                <th>TDS</th>
+                                <th>Temperatura</th>
+                                <th>Caudal</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>29/05/2026</td>
+                                <td>10:30 a.m.</td>
+                                <td>7.25</td>
+                                <td>12.4 NTU</td>
+                                <td>320 ppm</td>
+                                <td>24.6 °C</td>
+                                <td>1.32 L/min</td>
+                                <td><span class="status-normal">Normal</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>29/05/2026</td>
+                                <td>10:00 a.m.</td>
+                                <td>7.10</td>
+                                <td>13.1 NTU</td>
+                                <td>335 ppm</td>
+                                <td>24.8 °C</td>
+                                <td>1.20 L/min</td>
+                                <td><span class="status-normal">Normal</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>29/05/2026</td>
+                                <td>09:30 a.m.</td>
+                                <td>6.40</td>
+                                <td>26.8 NTU</td>
+                                <td>590 ppm</td>
+                                <td>25.1 °C</td>
+                                <td>0.95 L/min</td>
+                                <td><span class="status-alert">Alerta</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>29/05/2026</td>
+                                <td>09:00 a.m.</td>
+                                <td>7.35</td>
+                                <td>11.7 NTU</td>
+                                <td>315 ppm</td>
+                                <td>24.4 °C</td>
+                                <td>1.28 L/min</td>
+                                <td><span class="status-normal">Normal</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>28/05/2026</td>
+                                <td>06:30 p.m.</td>
+                                <td>6.10</td>
+                                <td>31.2 NTU</td>
+                                <td>640 ppm</td>
+                                <td>26.0 °C</td>
+                                <td>0.80 L/min</td>
+                                <td><span class="status-risk">Riesgo</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<script src="../js/auth.js"></script>
+</body>
+</body>
+</html>
