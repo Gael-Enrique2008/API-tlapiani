@@ -39,8 +39,8 @@
             <div class="stat-card main-measure">
                 <div class="measure-icon">🧪</div>
                 <h4>pH</h4>
-                <h2>7.25</h2>
-                <p>Normal</p>
+                <h2 id="phValor">--</h2>
+                <p id="phEstado">Cargando...</p>
             </div>
         </div>
 
@@ -48,8 +48,8 @@
             <div class="stat-card main-measure">
                 <div class="measure-icon">🌫️</div>
                 <h4>Turbidez</h4>
-                <h2>12.4 NTU</h2>
-                <p>En revisión</p>
+                <h2 id="turbidityValor">--</h2>
+                <p id="turbidityEstado">Cargando...</p>
             </div>
         </div>
 
@@ -57,8 +57,8 @@
             <div class="stat-card main-measure">
                 <div class="measure-icon">💧</div>
                 <h4>TDS</h4>
-                <h2>320 ppm</h2>
-                <p>Normal</p>
+                <h2 id="tdsValor">--</h2>
+                <p id="tdsEstado">Cargando...</p>
             </div>
         </div>
 
@@ -71,7 +71,7 @@
             <div class="stat-card secondary-measure">
                 <div class="measure-icon secondary-icon">🌡️</div>
                 <h5>Temperatura</h5>
-                <h4>24.6 °C</h4>
+                <h4 id="temperatureValor">--</h4>
             </div>
         </div>
 
@@ -79,7 +79,7 @@
             <div class="stat-card secondary-measure">
                 <div class="measure-icon secondary-icon">🚰</div>
                 <h5>Caudal</h5>
-                <h4>1.32 L/min</h4>
+                <h4 id="flowValor">--</h4>
             </div>
         </div>
 
@@ -171,6 +171,7 @@
 
 </div>
 <script src="auth.js"></script>
+<script src="dashboard.js"></script>
 </body>
 </body>
 </html>
