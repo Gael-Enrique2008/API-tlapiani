@@ -58,26 +58,28 @@
                     Accede al panel de monitoreo del sistema
                 </p>
 
-                <form>
+                <form id="loginForm">
 
                     <label>Correo electrónico</label>
-                    <input type="email" placeholder="ejemplo@correo.com">
+                    <input id="correo" type="email" placeholder="ejemplo@correo.com">
 
                     <label>Contraseña</label>
-                    <input type="password" placeholder="••••••••">
+                    <input id="password" type="password" placeholder="••••••••">
 
                     <div class="extra-links">
                         <a href="#">¿Olvidaste tu contraseña?</a>
                     </div>
+
+                    <p id="mensajeLogin"></p>
 
                     <button type="submit">
                         Entrar al sistema
                     </button>
                     
                     <div class="register-link">
-    ¿No tienes cuenta?
-    <a href="crear-cuenta.html">Crear cuenta</a>
-</div>
+                        ¿No tienes cuenta?
+                        <a href="crear-cuenta.html">Crear cuenta</a>
+                    </div>
                 </form>
 
             </div>
@@ -87,6 +89,6 @@
     </div>
 
 </div>
-</body>
+<script src="login.js"></script>
 </body>
 </html>
