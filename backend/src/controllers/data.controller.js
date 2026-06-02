@@ -14,6 +14,30 @@ const convertirNumero = (valor) => {
     return numero;
 };
 
+const clasificarMedicion = (datos) => {
+    if (
+        datos.ph < 6.5 || datos.ph > 8.5 ||
+        datos.tds > 1000 ||
+        datos.turbidity > 100 ||
+        datos.temperature > 45 ||
+        datos.bod > 30
+    ) {
+        return "riesgo";
+    }
+
+    if (
+        datos.ph < 6.8 || datos.ph > 8.2 ||
+        datos.tds > 500 ||
+        datos.turbidity > 50 ||
+        datos.temperature > 35 ||
+        datos.bod > 15
+    ) {
+        return "alerta";
+    }
+
+    return "normal";
+};
+
 const saveMeasurement = async (req, res) => {
     try {
         const {
@@ -72,6 +96,9 @@ const saveMeasurement = async (req, res) => {
             }
         }
 
+        const estado = clasificarMedicion(datos);
+        
+
         await pool.query(
             `
             INSERT INTO measurements
@@ -105,7 +132,8 @@ const saveMeasurement = async (req, res) => {
         );
 
         res.status(200).json({
-            mensaje: "Medición guardada"
+            mensaje: "Medición guardada",
+            estado
         });
 
     } catch (error) {
