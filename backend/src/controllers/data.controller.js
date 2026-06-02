@@ -97,7 +97,6 @@ const saveMeasurement = async (req, res) => {
         }
 
         const estado = clasificarMedicion(datos);
-        
 
         await pool.query(
             `
