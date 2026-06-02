@@ -60,22 +60,27 @@
                     Completa tu información para registrarte
                 </p>
 
-                <form>
+                <form id="registerForm">
 
-                    <label>Nombre completo</label>
-                    <input type="text" placeholder="Nombre y apellido">
+                    <label>Nombre</label>
+                    <input id="nombre" type="text" placeholder="Nombre">
+
+                    <label>Apellido</label>
+                    <input id="apellido" type="text" placeholder="Apellido">
 
                     <label>Correo electrónico</label>
-                    <input type="email" placeholder="ejemplo@correo.com">
+                    <input id="correo" type="email" placeholder="ejemplo@correo.com">
 
-                    <label>Dispositivo vinculado</label>
-                    <input type="text" placeholder="Ej. Tlapiani-01">
+                    <label>Usuario</label>
+                    <input id="username" type="text" placeholder="Ej. gael123">
 
                     <label>Contraseña</label>
-                    <input type="password" placeholder="••••••••">
+                    <input id="password" type="password" placeholder="••••••••">
 
                     <label>Confirmar contraseña</label>
-                    <input type="password" placeholder="••••••••">
+                    <input id="confirmPassword" type="password" placeholder="••••••••">
+
+                    <p id="mensajeRegistro"></p>
 
                     <button type="submit">
                         Crear cuenta
@@ -96,6 +101,6 @@
 
 </div>
 
-</body>
+<script src="crear-cuenta.js"></script>
 </body>
 </html>

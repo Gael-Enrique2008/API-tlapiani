@@ -34,19 +34,6 @@ const userSchema = new mongoose.Schema(
             type: String,
             trim: true
         },
-        devices: [
-            {
-                deviceId: {
-                    type: String,
-                    required: true,
-                    trim: true
-                },
-                nombre: {
-                    type: String,
-                    trim: true
-                }
-            }
-        ],
         rol: {
             type: String,
             enum: ["admin", "user"],
