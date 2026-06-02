@@ -7,7 +7,6 @@ document.getElementById("registerForm").addEventListener("submit", async functio
     const apellido = document.getElementById("apellido").value.trim();
     const username = document.getElementById("username").value.trim();
     const correo = document.getElementById("correo").value.trim();
-    const deviceId = document.getElementById("deviceId").value.trim();
     const password = document.getElementById("password").value;
     const confirmPassword = document.getElementById("confirmPassword").value;
     const mensaje = document.getElementById("mensajeRegistro");
