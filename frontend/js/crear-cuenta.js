@@ -11,6 +11,33 @@ document.getElementById("registerForm").addEventListener("submit", async functio
     const confirmPassword = document.getElementById("confirmPassword").value;
     const mensaje = document.getElementById("mensajeRegistro");
 
+    const correoRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!correoRegex.test(correo)) {
+            mensaje.textContent = "Ingresa una dirección de correo válida.";
+            return;
+    }
+
+    if (password.length < 8) {
+    mensaje.textContent = "La contraseña debe tener al menos 8 caracteres.";
+    return;
+    }
+
+    if (!/[A-Z]/.test(password)) {
+        mensaje.textContent = "La contraseña debe contener al menos una letra mayúscula.";
+        return;
+    }
+
+    if (!/[a-z]/.test(password)) {
+        mensaje.textContent = "La contraseña debe contener al menos una letra minúscula.";
+        return;
+    }
+
+    if (!/[0-9]/.test(password)) {
+        mensaje.textContent = "La contraseña debe contener al menos un número.";
+        return;
+    }
+
     if (password !== confirmPassword) {
         mensaje.textContent = "Las contraseñas no coinciden";
         return;
