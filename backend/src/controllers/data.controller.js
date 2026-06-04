@@ -96,6 +96,17 @@ const saveMeasurement = async (req, res) => {
             }
         }
 
+        const dispositivoExiste = await pool.query(
+            "SELECT * FROM dispositivos WHERE device_id = $1",
+            [device_id]
+        );
+
+        if (dispositivoExiste.rows.length === 0) {
+            return res.status(404).json({
+                mensaje: "Dispositivo no registrado"
+            });
+        }
+
         const estado = clasificarMedicion(datos);
 
         await pool.query(
