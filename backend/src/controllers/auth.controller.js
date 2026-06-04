@@ -183,7 +183,7 @@ const addDevice = async (req, res) => {
         await pool.query(
             `
             INSERT INTO dispositivos
-            (device_id, usuario_id, nombre)
+            (device_id, usuario_id_mongo, nombre)
             VALUES ($1, $2, $3)
             `,
             [
@@ -209,10 +209,10 @@ const getDevices = async (req, res) => {
     try {
         const result = await pool.query(
             `
-            SELECT id, device_id, nombre, fecha_vinculacion
+            SELECT id, device_id, nombre, creado_en
             FROM dispositivos
-            WHERE usuario_id = $1
-            ORDER BY fecha_vinculacion DESC
+            WHERE usuario_id_mongo = $1
+            ORDER BY creado_en DESC
             `,
             [req.user.id]
         );
