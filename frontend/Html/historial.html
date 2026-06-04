@@ -16,21 +16,46 @@
 
     <ul>
         <li><a href="index.html">Inicio</a></li>
+        <li><a href="dispositivos.html">Mis dispositivos</a></li>
         <li><a href="dashboard.html">Dashboard</a></li>
         <li><a href="mapa.html">Mapa</a></li>
         <li><a href="historial.html">Historial</a></li>
         <li><a href="alertas.html">Alertas</a></li>
         <li><a href="reportes.html">Reportes PDF</a></li>
-        <li><a href="#">Cerrar sesión</a></li>
     </ul>
+
+    <div class="sidebar-user">
+        <p>Usuario</p>
+        <strong id="usuarioActivo">--</strong>
+
+        <button id="btnLogout" class="logout-btn">
+            Cerrar sesión
+        </button>
+    </div>
 </div>
 
 <div class="main-content">
 
-    <div class="top-bar">
+    
+
+    <div class="top-bar d-flex justify-content-between align-items-center">
+
+    <div>
         <h1>Historial de mediciones</h1>
-        <p>Registro de lecturas realizadas por el dispositivo Tlapiani</p>
+
+        <p id="mensajeHistorial">
+            Cargando historial...
+        </p>
     </div>
+
+    <div class="info-card p-3">
+        <strong>Dispositivo:</strong>
+        <span id="dispositivoActual">
+            Sin dispositivo
+        </span>
+    </div>
+
+</div>
 
     <div class="row g-4">
 
@@ -38,7 +63,7 @@
             <div class="stat-card secondary-measure">
                 <div class="measure-icon secondary-icon">📋</div>
                 <h5>Total registros</h5>
-                <h4>24</h4>
+                <h4 id="totalRegistros">--</h4>
             </div>
         </div>
 
@@ -46,7 +71,7 @@
             <div class="stat-card secondary-measure">
                 <div class="measure-icon secondary-icon">💧</div>
                 <h5>Estado frecuente</h5>
-                <h4>Normal</h4>
+                <h4 id="estadoFrecuente">--</h4>
             </div>
         </div>
 
@@ -54,7 +79,7 @@
             <div class="stat-card secondary-measure">
                 <div class="measure-icon secondary-icon">⚠️</div>
                 <h5>Alertas</h5>
-                <h4>2</h4>
+                <h4 id="totalAlertas">--</h4>
             </div>
         </div>
 
@@ -62,14 +87,13 @@
             <div class="stat-card secondary-measure">
                 <div class="measure-icon secondary-icon">🕒</div>
                 <h5>Última lectura</h5>
-                <h4>10:30 a.m.</h4>
+                <h4 id="ultimaLectura">--</h4>
             </div>
         </div>
 
     </div>
 
     <div class="row g-4 mt-3">
-
         <div class="col-md-12">
             <div class="info-card">
 
@@ -90,60 +114,9 @@
                             </tr>
                         </thead>
 
-                        <tbody>
+                        <tbody id="tablaHistorial">
                             <tr>
-                                <td>29/05/2026</td>
-                                <td>10:30 a.m.</td>
-                                <td>7.25</td>
-                                <td>12.4 NTU</td>
-                                <td>320 ppm</td>
-                                <td>24.6 °C</td>
-                                <td>1.32 L/min</td>
-                                <td><span class="status-normal">Normal</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>29/05/2026</td>
-                                <td>10:00 a.m.</td>
-                                <td>7.10</td>
-                                <td>13.1 NTU</td>
-                                <td>335 ppm</td>
-                                <td>24.8 °C</td>
-                                <td>1.20 L/min</td>
-                                <td><span class="status-normal">Normal</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>29/05/2026</td>
-                                <td>09:30 a.m.</td>
-                                <td>6.40</td>
-                                <td>26.8 NTU</td>
-                                <td>590 ppm</td>
-                                <td>25.1 °C</td>
-                                <td>0.95 L/min</td>
-                                <td><span class="status-alert">Alerta</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>29/05/2026</td>
-                                <td>09:00 a.m.</td>
-                                <td>7.35</td>
-                                <td>11.7 NTU</td>
-                                <td>315 ppm</td>
-                                <td>24.4 °C</td>
-                                <td>1.28 L/min</td>
-                                <td><span class="status-normal">Normal</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>28/05/2026</td>
-                                <td>06:30 p.m.</td>
-                                <td>6.10</td>
-                                <td>31.2 NTU</td>
-                                <td>640 ppm</td>
-                                <td>26.0 °C</td>
-                                <td>0.80 L/min</td>
-                                <td><span class="status-risk">Riesgo</span></td>
+                                <td colspan="8">Cargando mediciones...</td>
                             </tr>
                         </tbody>
                     </table>
@@ -151,11 +124,12 @@
 
             </div>
         </div>
-
     </div>
 
 </div>
+
 <script src="../js/auth.js"></script>
-</body>
+<script src="../js/historial.js"></script>
+
 </body>
 </html>
