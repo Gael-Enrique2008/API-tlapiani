@@ -13,6 +13,11 @@ document.getElementById("registerForm").addEventListener("submit", async functio
 
     const correoRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+    if (!nombre || !apellido || !username || !correo || !password || !confirmPassword) {
+        mensaje.textContent = "Por favor completa todos los campos.";
+        return;
+}
+
         if (!correoRegex.test(correo)) {
             mensaje.textContent = "Ingresa una dirección de correo válida.";
             return;
@@ -63,6 +68,10 @@ document.getElementById("registerForm").addEventListener("submit", async functio
     mensaje.textContent = data.mensaje;
 
     if (respuesta.ok) {
+    mensaje.textContent = "Cuenta creada exitosamente. Redirigiendo...";
+
+    setTimeout(() => {
         window.location.href = "login.html";
-    }
+    }, 2000);
+}
 });

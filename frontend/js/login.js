@@ -36,7 +36,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         localStorage.setItem("token", data.token);
+        localStorage.setItem("usuarioOCorreo", usuarioOCorreo);
 
-        window.location.href = "dashboard.html";
+        window.location.href = "dispositivos.html";
     });
 });
