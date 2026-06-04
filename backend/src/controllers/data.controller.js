@@ -158,7 +158,16 @@ const saveMeasurement = async (req, res) => {
 
 const getMeasurements = async (req, res) => {
     try {
-        const result = await pool.query(`
+        const { device_id } = req.query;
+
+        if (!device_id) {
+            return res.status(400).json({
+                mensaje: "device_id es obligatorio"
+            });
+        }
+
+        const result = await pool.query(
+            `
             SELECT
                 device_id,
                 flow,
@@ -172,9 +181,12 @@ const getMeasurements = async (req, res) => {
                 estado,
                 created_at AS timestamp
             FROM measurements
+            WHERE device_id = $1
             ORDER BY created_at DESC
             LIMIT 100
-        `);
+            `,
+            [device_id]
+        );
 
         res.status(200).json(result.rows);
 

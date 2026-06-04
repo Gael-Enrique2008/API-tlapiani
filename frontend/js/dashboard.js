@@ -37,9 +37,7 @@ async function cargarResumenDispositivo() {
             return;
         }
 
-        const medicionesDispositivo = data.filter(
-            medicion => medicion.device_id === dispositivoSeleccionado
-        );
+        
 
         if (medicionesDispositivo.length === 0) {
             valorFlow.textContent = "--";
