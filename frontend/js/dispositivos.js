@@ -136,47 +136,4 @@ btnAgregar.addEventListener("click", async () => {
     }
 });
 
-/*btnAgregar.addEventListener("click", async () => {
-    const deviceId = inputDevice.value.trim();
-    const deviceName = inputName.value.trim();
-
-    if (!deviceId) {
-    mensaje.textContent = "Ingresa el ID del dispositivo.";
-    return;
-    }
-
-    try {
-        mensaje.textContent = "Registrando dispositivo...";
-
-        const response = await fetch(`${API_URL}/auth/devices`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`
-            },
-            body: JSON.stringify({
-                device_id: deviceId,
-                nombre: deviceName || "Dispositivo Tlapiani"
-            })
-        });
-
-        const data = await response.json();
-
-        if (!response.ok) {
-            mensaje.textContent = data.mensaje || "No se pudo registrar el dispositivo.";
-            return;
-        }
-
-        mensaje.textContent = "Dispositivo agregado correctamente.";
-
-        inputDevice.value = "";
-        inputName.value = "";
-
-        cargarDispositivos();
-
-    } catch (error) {
-        mensaje.textContent = "Error de conexión con el servidor.";
-    }
-});/*
-
-//cargarDispositivos();
+cargarDispositivos();
