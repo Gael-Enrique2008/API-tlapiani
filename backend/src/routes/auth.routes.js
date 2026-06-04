@@ -1,5 +1,5 @@
 const authMiddleware = require("../middleware/auth.middleware");
-const {register, login, addDevice} = require("../controllers/auth.controller");
+const { register, login, addDevice, getDevices } = require("../controllers/auth.controller");
 
 const express = require("express");
 const router = express.Router();
@@ -15,5 +15,6 @@ router.get("/me", authMiddleware, (req, res) => {
 });
 
 router.post("/devices", authMiddleware, addDevice);
+router.get("/devices", authMiddleware, getDevices);
 
 module.exports = router;

@@ -205,8 +205,33 @@ const addDevice = async (req, res) => {
     }
 };
     
+const getDevices = async (req, res) => {
+    try {
+        const result = await pool.query(
+            `
+            SELECT id, device_id, nombre, fecha_vinculacion
+            FROM dispositivos
+            WHERE usuario_id = $1
+            ORDER BY fecha_vinculacion DESC
+            `,
+            [req.user.id]
+        );
+
+        res.status(200).json({
+            dispositivos: result.rows
+        });
+
+    } catch (error) {
+        res.status(500).json({
+            mensaje: "Error al obtener dispositivos",
+            error: error.message
+        });
+    }
+};
+
 module.exports = {
     register,
     login,
-    addDevice
+    addDevice,
+    getDevices
 };
