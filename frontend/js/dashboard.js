@@ -23,12 +23,12 @@ if (!dispositivoSeleccionado) {
 
 async function cargarResumenDispositivo() {
     try {
-        const response = await fetch(`${API_URL}/data`, {
-            method: "GET",
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        });
+        const response = await fetch(`${API_URL}/data?device_id=${dispositivoSeleccionado}`, {
+    method: "GET",
+    headers: {
+        Authorization: `Bearer ${token}`
+    }
+});
 
         const data = await response.json();
 
