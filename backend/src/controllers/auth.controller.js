@@ -1,6 +1,7 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
+const pool = require("../config/postgres");
 const { validarTexto, validarCorreo, validarPassword, validarCelular, validarLogin } = require("../utils/validators");
 
 const register = async (req, res) => {
@@ -158,41 +159,47 @@ const login = async (req, res) => {
 
 const addDevice = async (req, res) => {
     try {
-        const { deviceId, nombre } = req.body;
+        const { device_id, nombre } = req.body;
 
-        if (!deviceId || !deviceId.trim()) {
+        if (!device_id || !device_id.trim()) {
             return res.status(400).json({
-                mensaje: "El deviceId es obligatorio"
+                mensaje: "El device_id es obligatorio"
             });
         }
 
-        const user = await User.findById(req.user.id);
+        const deviceIdLimpio = device_id.trim();
 
-        const exists = user.devices.find(
-            d => d.deviceId === deviceId.trim()
+        const existe = await pool.query(
+            "SELECT * FROM dispositivos WHERE device_id = $1",
+            [deviceIdLimpio]
         );
 
-        if (exists) {
+        if (existe.rows.length > 0) {
             return res.status(400).json({
                 mensaje: "Ese dispositivo ya está vinculado"
             });
         }
 
-        user.devices.push({
-            deviceId: deviceId.trim(),
-            nombre: nombre ? nombre.trim() : ""
-        });
+        await pool.query(
+            `
+            INSERT INTO dispositivos
+            (device_id, usuario_id, nombre)
+            VALUES ($1, $2, $3)
+            `,
+            [
+                deviceIdLimpio,
+                req.user.id,
+                nombre ? nombre.trim() : "Dispositivo Tlapiani"
+            ]
+        );
 
-        await user.save();
-
-        res.status(200).json({
-            mensaje: "Dispositivo agregado correctamente",
-            devices: user.devices
+        res.status(201).json({
+            mensaje: "Dispositivo vinculado correctamente"
         });
 
     } catch (error) {
         res.status(500).json({
-            mensaje: "Error al agregar dispositivo",
+            mensaje: "Error al vincular dispositivo",
             error: error.message
         });
     }
