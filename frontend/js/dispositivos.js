@@ -85,11 +85,64 @@ function mostrarDispositivos(dispositivos) {
 }
 
 btnAgregar.addEventListener("click", async () => {
+    console.log("Click en agregar");
+
+    const deviceId = inputDevice.value.trim();
+    const deviceName = inputName.value.trim();
+
+    console.log("Device ID:", deviceId);
+    console.log("Token:", token);
+
+    if (!deviceId) {
+        mensaje.textContent = "Ingresa el ID del dispositivo.";
+        return;
+    }
+
+    try {
+        mensaje.textContent = "Registrando dispositivo...";
+
+        const response = await fetch(`${API_URL}/auth/devices`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                device_id: deviceId,
+                nombre: deviceName || "Dispositivo Tlapiani"
+            })
+        });
+
+        console.log("Status:", response.status);
+
+        const data = await response.json();
+        console.log("Respuesta:", data);
+
+        if (!response.ok) {
+            mensaje.textContent = data.mensaje || "No se pudo registrar el dispositivo.";
+            return;
+        }
+
+        mensaje.textContent = "Dispositivo agregado correctamente.";
+
+        inputDevice.value = "";
+        inputName.value = "";
+
+        cargarDispositivos();
+
+    } catch (error) {
+        console.error("Error fetch:", error);
+        mensaje.textContent = "Error de conexión con el servidor.";
+    }
+});
+
+/*btnAgregar.addEventListener("click", async () => {
     const deviceId = inputDevice.value.trim();
     const deviceName = inputName.value.trim();
 
     if (!deviceId) {
-        mensaje.textContent = "Ingresa el ID del dispositivo.";
+    mensaje.textContent = "Ingresa el ID del dispositivo.";
+    return;
     }
 
     try {
@@ -124,6 +177,6 @@ btnAgregar.addEventListener("click", async () => {
     } catch (error) {
         mensaje.textContent = "Error de conexión con el servidor.";
     }
-});
+});/*
 
-cargarDispositivos();
+//cargarDispositivos();
