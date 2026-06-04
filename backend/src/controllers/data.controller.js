@@ -156,6 +156,36 @@ const saveMeasurement = async (req, res) => {
     }
 };
 
+const getMeasurements = async (req, res) => {
+    try {
+        const result = await pool.query(`
+            SELECT
+                device_id,
+                flow,
+                tds,
+                turbidity,
+                temperature,
+                ph,
+                bod,
+                latitude,
+                longitude,
+                estado,
+                created_at AS timestamp
+            FROM measurements
+            ORDER BY created_at DESC
+            LIMIT 100
+        `);
+
+        res.status(200).json(result.rows);
+
+    } catch (error) {
+        res.status(500).json({
+            mensaje: "Error al obtener mediciones",
+            error: error.message
+        });
+    }
+};
 module.exports = {
-    saveMeasurement
+    saveMeasurement,
+    getMeasurements
 };
