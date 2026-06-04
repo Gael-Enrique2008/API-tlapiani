@@ -1,5 +1,5 @@
-const token = localStorage.getItem("token");
+const authToken = localStorage.getItem("token");
 
-if (!token) {
+if (!authToken) {
     window.location.href = "login.html";
 }
